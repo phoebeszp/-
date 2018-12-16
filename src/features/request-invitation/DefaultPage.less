@@ -1,0 +1,72 @@
+@import '../../styles/mixins';
+
+.request-invitation-default-page {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	color: grey;
+	.header{
+		position: relative;
+		top: 0;
+		height: 60px;
+		width: 100%;
+		border-bottom: 1px solid grey;
+		p{
+			margin: 0 0 0 60px;
+			line-height: 60px;
+			font-size: 18px;
+			font-weight: bold;
+			font-family: monospace;
+		}
+	}
+	.footer{
+		position: relative;
+		bottom: 0;
+		width:	100%;
+		height: 60px;
+		border-top: 1px solid grey;
+		.fonterContent{
+			display: block;
+			p{
+				text-align: center;
+				font-style: italic;
+				margin: 0px;
+				font-size: 12px;
+			}
+		}
+		
+	}
+	.content{
+		position: relative;
+		height: calc(100% - 122px);
+		width: 100%;
+		.mFontContent{
+			font-family: monospace;
+			font-size: 3em;
+			font-weight: bold;
+		}
+		.sFontContent{
+			font-family: monospace;
+			font-size: 1em;
+			margin: 20px;
+		}
+		.requestButton{
+			border: 1px solid grey;
+			height: 2.5em;
+			width: 12em;
+			background: white;
+			font-family: monospace;
+			font-size: 1em; 
+			color: grey;
+			&:hover {
+				cursor: pointer;
+			}
+		}
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+	}
+	
+}

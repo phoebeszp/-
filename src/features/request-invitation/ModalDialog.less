@@ -1,0 +1,52 @@
+@import '../../styles/mixins';
+
+.request-invitation-modal-dialog {
+    padding: 20px;
+    width: 300px;
+    height: 350px;
+    .formTitle {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        text-align: center;
+        font-family: monospace;
+        font-size: 14px;
+        font-style: italic;
+        font-weight: 900;
+        color: grey;
+        .separator{
+           width: 30px;
+        }
+    }
+    .formContent{
+        display: flex;
+        flex-direction: column;
+        input,button{
+            height: 30px;
+            box-sizing: content-box;
+            border: 1px solid black;
+            padding: 0;
+            background-color: #fff;
+            font-family: monospace;
+            font-size: 12px;
+            
+        }
+        input{
+            text-indent: 12px;
+            margin: 8px 15px 8px 15px;
+        }
+        button{
+            &:hover{
+                cursor: pointer;
+            }
+            margin: 30px 15px 10px 15px;
+            &:disabled{
+                opacity: 0.6;
+                cursor: none;
+            }
+        }
+        .errorMessage {
+            color: red;
+        }
+    }
+  }
+  
