@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from './redux/actions';
-import ModalDialog from './ModalDialog';
+import FormDialog from './FormDialog';
 
 export class DefaultPage extends Component {
   static propTypes = {
@@ -19,7 +19,7 @@ export class DefaultPage extends Component {
   render() {
     return (
       <div className="request-invitation-default-page">
-        <ModalDialog visible={this.state.visible} />
+        <FormDialog visible={this.state.visible} />
         <header className="header"> <p>BROCCOLI & CO.</p></header>
         <div className="content"> 
           <div className="mFontContent">A better way</div>

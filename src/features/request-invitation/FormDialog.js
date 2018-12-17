@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import PropTypes from 'prop-types';
-import {Modal} from "antd";
 import {saveRequest} from "./saveRequest";
 import ModalDialog from './ModalDialog';
+import OkDialog from './OkDialog';
 
 const sendText = "Send";
 const waitText = "Send, please wait...";
@@ -13,8 +12,9 @@ class FormDialog extends Component{
             email: "",
             name: "",
             confirmEmail: "",
-            submitButtonText: "",
+            submitButtonText: sendText,
             submitButtonDisabled: false,
+            showOkDialog: false
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.onNameChange = this.onNameChange.bind(this);
@@ -23,7 +23,7 @@ class FormDialog extends Component{
     }
     onNameChange = (e) => {
         this.setState({
-        name: e.target.value
+          name: e.target.value
         });
     }
     onEmailChange = (e) => {
@@ -37,13 +37,12 @@ class FormDialog extends Component{
         });
     }
     handleSubmit = (e) => {
-        // this.setState({visible: false});
         e.preventDefault();
         const {name, email} = this.state;
         this.setState({submitButtonText: waitText, submitButtonDisabled: true});
         saveRequest({name, email}).then((response)=>{
           if(response.status === 200){
-            this.setState({visible:false});
+            this.setState({visible:false, name: "", email:"", confirmEmail: "", showOKDialog: true});
           }
         }).catch((error) =>{
           this.setState({submitButtonText: sendText, submitButtonDisabled: false});
@@ -60,8 +59,10 @@ class FormDialog extends Component{
     }
     render (){
         return (
+          <div>
+          <OkDialog visible={this.state.showOkDialog}/>
            <ModalDialog modalTitle="Request an invite" 
-           submitButtonText={sendText}
+           submitButtonText={this.state.submitButtonText}
            visible = {this.state.visible}
            submitButtonDisabled = {this.state.submitButtonDisabled}
            errorMessage = {this.state.errorMessage}
@@ -76,6 +77,7 @@ class FormDialog extends Component{
                     onChange={this.onConfirmEmailChange}
                 ></input>
            </ModalDialog>
+           </div>
         );
     };
 }

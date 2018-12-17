@@ -1,7 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from 'prop-types';
 import {Modal} from "antd";
-import {saveRequest} from "./saveRequest"
 
 class ModalDialog extends React.PureComponent {
   constructor(props){
@@ -18,7 +17,7 @@ class ModalDialog extends React.PureComponent {
     handleSubmit: PropTypes.func.isRequired
   }
   static defaultProps = {
-    visible: true,
+    visible: false,
     modalTitle: "",
     submitButtonText: ""
   } 
