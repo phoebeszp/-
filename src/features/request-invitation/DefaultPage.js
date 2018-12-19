@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import * as actions from './redux/actions';
-import FormDialog from './FormDialog';
+import generateDialog from './FormDialog';
 
 export class DefaultPage extends Component {
   static propTypes = {
@@ -11,15 +8,16 @@ export class DefaultPage extends Component {
     actions: PropTypes.object.isRequired,
   };
   state = {
-    visible: false
+    showFormDialog: false
   }
   handlePress = () => {
-   this.setState({visible: true});
+   generateDialog({visible:true}).then(result => {
+
+   });
   };
   render() {
     return (
       <div className="request-invitation-default-page">
-        <FormDialog visible={this.state.visible} />
         <header className="header"> <p>BROCCOLI & CO.</p></header>
         <div className="content"> 
           <div className="mFontContent">A better way</div>
@@ -38,21 +36,4 @@ export class DefaultPage extends Component {
   }
 }
 
-/* istanbul ignore next */
-function mapStateToProps(state) {
-  return {
-    requestInvitation: state.requestInvitation,
-  };
-}
-
-/* istanbul ignore next */
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators({ ...actions }, dispatch)
-  };
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(DefaultPage);
+export default DefaultPage;
