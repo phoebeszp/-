@@ -1,27 +1,24 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import {Modal} from "antd";
+import {Modal, Spin} from "antd";
 
 class ModalDialog extends React.PureComponent {
+  constructor(props){
+    super(props);
+    this.state = {visible : this.props.visible, modalTitle: this.props.modalTitle};
+  }
   static propTypes = {
-    visible: PropTypes.bool.isRequired,
-    modalTitle: PropTypes.string.isRequired
+    modalTitle: PropTypes.string.isRequired,
+    visible: PropTypes.bool.isRequired
   }
-  static defaultProps = {
-    visible: false,
-    modalTitle: ""
-  } 
-  componentWillReceiveProps(props) {
-    this.setState({ visible: props.visible});
+  componentWillMount(){
+    this.setState({visible: this.props.visible});
   }
-  componentDidMount() {
-    this.setState({ 
-      visible: this.props.visible, 
-    });
+  componentWillReceiveProps(props){
+    this.setState({visible: props.visible});
   }
-  
   render() {
-    let {modalTitle, children, visible} = this.props;
+    let {modalTitle, children} = this.props;
     return (
         <Modal
           className="request-invitation-modal-dialog" 
@@ -29,7 +26,7 @@ class ModalDialog extends React.PureComponent {
           destroyOnClose={true}
           closable={false}
           centered={true}
-          visible={visible}
+          visible={this.state.visible}
           >
             <div className="content">
               <div className="formTitle">

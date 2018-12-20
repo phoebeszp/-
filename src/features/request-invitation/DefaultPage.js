@@ -1,23 +1,26 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import generateDialog from './FormDialog';
+import FormDialog from './FormDialog';
+import OkDialog from './OkDialog';
 
 export class DefaultPage extends Component {
-  static propTypes = {
-    requestInvitation: PropTypes.object.isRequired,
-    actions: PropTypes.object.isRequired,
-  };
   state = {
-    showFormDialog: false
+    showFormDialog: false,
+    showOKDialog: false
+  }
+  _handleSend = () => {
+    this.setState({showFormDialog: false, showOKDialog: true});
   }
   handlePress = () => {
-   generateDialog({visible:true}).then(result => {
-
-   });
+    this.setState({showFormDialog: true});
   };
+  _handleOK = () => {
+    this.setState({showOKDialog: false});
+  }
   render() {
     return (
       <div className="request-invitation-default-page">
+      <FormDialog visible={this.state.showFormDialog} handleConfirm={this._handleSend}></FormDialog>
+      <OkDialog visible={this.state.showOKDialog} handleConfirm={this._handleOK}></OkDialog>
         <header className="header"> <p>BROCCOLI & CO.</p></header>
         <div className="content"> 
           <div className="mFontContent">A better way</div>

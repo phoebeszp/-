@@ -4,19 +4,13 @@ import PropTypes from 'prop-types';
 
 export default class OkDialog extends Component {
   static propTypes = {
+    handleConfirm: PropTypes.func.isRequired,
     visible: PropTypes.bool.isRequired
-  }
-  static defaultProps = {
-    visible: true
   }
   constructor(props){
     super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.state = {visible: true}
+    this.state = {visible: false};
   };
-  handleSubmit = ()=>{
-    this.setState({visible: false});
-  }
   componentDidMount() {
       this.setState({ visible: this.props.visible})
   }
@@ -27,13 +21,13 @@ export default class OkDialog extends Component {
     return (
       <ModalDialog modalTitle="All done!" 
         submitButtonText="OK"
-        handleSubmit={this.handleSubmit}
         visible = {this.state.visible}
       >
       <div className="request-invitation-ok-dialog">
         <p>You will be one of the first to experience</p>
         <p>Broccoli & Co. when we launch.</p>
       </div>
+      <button onClick={this.props.handleConfirm}>OK</button>
       </ModalDialog>
     );
   }
