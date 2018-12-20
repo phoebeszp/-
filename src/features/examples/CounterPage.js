@@ -33,7 +33,7 @@ export class CounterPage extends Component {
 /* istanbul ignore next */
 function mapStateToProps(state) {
   return {
-    examples: state.examples,
+    // examples: state.examples,
   };
 }
 
