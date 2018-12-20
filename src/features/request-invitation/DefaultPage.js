@@ -31,7 +31,7 @@ export class DefaultPage extends Component {
         <footer className="footer">
           <div className="fonterContent">
             <p>Made with in Melboure</p>
-            <p>@ 2016 Broccoli & Co. All rights reserved.</p>
+            <p>@ 2016 Broccoli & Co. All rights reserved</p>
           </div>
         </footer>
       </div>
