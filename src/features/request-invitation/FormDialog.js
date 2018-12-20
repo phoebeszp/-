@@ -19,7 +19,8 @@ class FormContent extends Component{
         super(props);
         this.state = {
             submitButtonText: sendText,
-            submitButtonDisabled: false
+            submitButtonDisabled: false,
+            errorMessage: ""
         };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -44,11 +45,11 @@ class FormContent extends Component{
         });
     }
     componentWillMount(){
-      this.setState({handleConfirm: this.props.handleConfirm, visible: this.props.visible});
+      this.setState({handleConfirm: this.props.handleConfirm, visible: this.props.visible, errorMessage:""});
     }
 
     componentWillReceiveProps(props){
-      this.setState({visible: props.visible});
+      this.setState({visible: props.visible, errorMessage:""});
     }
 
     render (){
@@ -81,7 +82,7 @@ class FormContent extends Component{
               <FormItem>
                 <Button
                   htmlType="submit"
-                  disabled={hasErrors(getFieldsError())&& this.state.submitButtonDisabled}
+                  disabled={hasErrors(getFieldsError())|| this.state.submitButtonDisabled}
                   >
                   {this.state.submitButtonText}
                 </Button>
@@ -95,4 +96,5 @@ class FormContent extends Component{
     };
 }
 
-export default Form.create()(FormContent);
+const FormDialog = Form.create()(FormContent);
+export default FormDialog;
